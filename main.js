@@ -46,3 +46,69 @@ function speak(){
   synth.speak(utterThis);
 
 }
+
+function check(){
+
+  img = document.getElementById("capturedImg");
+  Classifier.classify(img,gotResult);
+
+}
+
+function gotResult(error,result){
+
+   if(error){
+
+   console.log(error);
+
+   }
+
+   else{
+
+    console.log(result);
+    document.getElementById("result_gesture_name").innerHTML = result[0].label;
+    document.getElementById("result_gesture_name2").innerHTML = result[1].label;
+    prediction1name = result[0].label;
+    prediction2name = result[1].label;
+    speak();
+
+
+    if(result[0].label == "Peace/victory"){
+
+       document.getElementById("update_gesture").innerHTML = "&#9996;";
+
+    }
+
+    if(result[0].label == "Thumbs up / Best"){
+
+      document.getElementById("update_gesture").innerHTML = "&#128077;";
+
+   }
+
+    if(result[0].label == "Amazing/Noice"){
+
+    document.getElementById("update_gesture").innerHTML = "&#128076;";
+
+    }
+
+    if(result[1].label == "Peace/victory"){
+
+      document.getElementById("update_gesture2").innerHTML = "&#9996;";
+
+   }
+
+   if(result[1].label == "Thumbs up / Best"){
+
+    document.getElementById("update_gesture2").innerHTML = "&#128077;";
+
+ }
+
+ if(result[1].label == "Amazing/Noice"){
+
+  document.getElementById("update_gesture2").innerHTML = "&#128076;";
+
+  }
+
+
+   }
+
+}
